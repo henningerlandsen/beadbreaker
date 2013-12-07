@@ -7,49 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		85185E9A184FB2C100FDD2BB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85185E99184FB2C100FDD2BB /* Cocoa.framework */; };
 		85185EA4184FB2C100FDD2BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85185EA2184FB2C100FDD2BB /* InfoPlist.strings */; };
-		85185EA6184FB2C100FDD2BB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 85185EA5184FB2C100FDD2BB /* main.m */; };
+		85185EA6184FB2C100FDD2BB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85185EA5184FB2C100FDD2BB /* main.cpp */; };
 		85185EAA184FB2C100FDD2BB /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 85185EA8184FB2C100FDD2BB /* Credits.rtf */; };
-		85185EAD184FB2C100FDD2BB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 85185EAC184FB2C100FDD2BB /* AppDelegate.m */; };
-		85185EB0184FB2C200FDD2BB /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85185EAE184FB2C200FDD2BB /* MainMenu.xib */; };
-		85185EB2184FB2C200FDD2BB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85185EB1184FB2C200FDD2BB /* Images.xcassets */; };
-		85185EB9184FB2C200FDD2BB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85185EB8184FB2C200FDD2BB /* XCTest.framework */; };
-		85185EBA184FB2C200FDD2BB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85185E99184FB2C100FDD2BB /* Cocoa.framework */; };
 		85185EC2184FB2C200FDD2BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85185EC0184FB2C200FDD2BB /* InfoPlist.strings */; };
-		85185EC4184FB2C200FDD2BB /* BeadBreakerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 85185EC3184FB2C200FDD2BB /* BeadBreakerTests.m */; };
+		85185EC4184FB2C200FDD2BB /* BoardModelTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85185EC3184FB2C200FDD2BB /* BoardModelTest.mm */; };
+		85185ECE184FB43900FDD2BB /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85185ECD184FB43900FDD2BB /* SDL2.framework */; };
+		85185ED1184FB73E00FDD2BB /* SDL2.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 85185ECD184FB43900FDD2BB /* SDL2.framework */; };
+		85185ED4184FB95D00FDD2BB /* BoardModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85185ED2184FB95D00FDD2BB /* BoardModel.cpp */; };
+		854F712718512D1400168F5E /* BoardModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85185ED2184FB95D00FDD2BB /* BoardModel.cpp */; };
+		854F71291852724200168F5E /* PositionTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 854F71281852724200168F5E /* PositionTest.mm */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		85185EBB184FB2C200FDD2BB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 85185E8E184FB2C100FDD2BB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 85185E95184FB2C100FDD2BB;
-			remoteInfo = BeadBreaker;
+/* Begin PBXCopyFilesBuildPhase section */
+		85185ED0184FB68D00FDD2BB /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				85185ED1184FB73E00FDD2BB /* SDL2.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-/* End PBXContainerItemProxy section */
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		85185E96184FB2C100FDD2BB /* BeadBreaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeadBreaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		85185E99184FB2C100FDD2BB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		85185E9C184FB2C100FDD2BB /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		85185E9D184FB2C100FDD2BB /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		85185E9E184FB2C100FDD2BB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		85185EA1184FB2C100FDD2BB /* BeadBreaker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeadBreaker-Info.plist"; sourceTree = "<group>"; };
 		85185EA3184FB2C100FDD2BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		85185EA5184FB2C100FDD2BB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		85185EA7184FB2C100FDD2BB /* BeadBreaker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BeadBreaker-Prefix.pch"; sourceTree = "<group>"; };
+		85185EA5184FB2C100FDD2BB /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../XCode/BeadBreaker/BeadBreaker/main.cpp; sourceTree = "<group>"; };
 		85185EA9184FB2C100FDD2BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		85185EAB184FB2C100FDD2BB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		85185EAC184FB2C100FDD2BB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		85185EAF184FB2C200FDD2BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		85185EB1184FB2C200FDD2BB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		85185EB7184FB2C200FDD2BB /* BeadBreakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeadBreakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		85185EB8184FB2C200FDD2BB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		85185EBF184FB2C200FDD2BB /* BeadBreakerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeadBreakerTests-Info.plist"; sourceTree = "<group>"; };
 		85185EC1184FB2C200FDD2BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		85185EC3184FB2C200FDD2BB /* BeadBreakerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeadBreakerTests.m; sourceTree = "<group>"; };
+		85185EC3184FB2C200FDD2BB /* BoardModelTest.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = BoardModelTest.mm; sourceTree = "<group>"; };
+		85185ECD184FB43900FDD2BB /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		85185ED2184FB95D00FDD2BB /* BoardModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardModel.cpp; sourceTree = "<group>"; };
+		85185ED3184FB95D00FDD2BB /* BoardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardModel.h; sourceTree = "<group>"; };
+		85185ED5184FB9EE00FDD2BB /* coretypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = coretypes.h; sourceTree = "<group>"; };
+		854F71281852724200168F5E /* PositionTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PositionTest.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85185E9A184FB2C100FDD2BB /* Cocoa.framework in Frameworks */,
+				85185ECE184FB43900FDD2BB /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,8 +62,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85185EBA184FB2C200FDD2BB /* Cocoa.framework in Frameworks */,
-				85185EB9184FB2C200FDD2BB /* XCTest.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +71,7 @@
 		85185E8D184FB2C100FDD2BB = {
 			isa = PBXGroup;
 			children = (
+				85185ECF184FB48000FDD2BB /* Source */,
 				85185E9F184FB2C100FDD2BB /* BeadBreaker */,
 				85185EBD184FB2C200FDD2BB /* BeadBreakerTests */,
 				85185E98184FB2C100FDD2BB /* Frameworks */,
@@ -95,30 +91,14 @@
 		85185E98184FB2C100FDD2BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				85185E99184FB2C100FDD2BB /* Cocoa.framework */,
-				85185EB8184FB2C200FDD2BB /* XCTest.framework */,
-				85185E9B184FB2C100FDD2BB /* Other Frameworks */,
+				85185ECD184FB43900FDD2BB /* SDL2.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		85185E9B184FB2C100FDD2BB /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				85185E9C184FB2C100FDD2BB /* AppKit.framework */,
-				85185E9D184FB2C100FDD2BB /* CoreData.framework */,
-				85185E9E184FB2C100FDD2BB /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		85185E9F184FB2C100FDD2BB /* BeadBreaker */ = {
 			isa = PBXGroup;
 			children = (
-				85185EAB184FB2C100FDD2BB /* AppDelegate.h */,
-				85185EAC184FB2C100FDD2BB /* AppDelegate.m */,
-				85185EAE184FB2C200FDD2BB /* MainMenu.xib */,
-				85185EB1184FB2C200FDD2BB /* Images.xcassets */,
 				85185EA0184FB2C100FDD2BB /* Supporting Files */,
 			);
 			path = BeadBreaker;
@@ -129,8 +109,6 @@
 			children = (
 				85185EA1184FB2C100FDD2BB /* BeadBreaker-Info.plist */,
 				85185EA2184FB2C100FDD2BB /* InfoPlist.strings */,
-				85185EA5184FB2C100FDD2BB /* main.m */,
-				85185EA7184FB2C100FDD2BB /* BeadBreaker-Prefix.pch */,
 				85185EA8184FB2C100FDD2BB /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -139,7 +117,8 @@
 		85185EBD184FB2C200FDD2BB /* BeadBreakerTests */ = {
 			isa = PBXGroup;
 			children = (
-				85185EC3184FB2C200FDD2BB /* BeadBreakerTests.m */,
+				854F71281852724200168F5E /* PositionTest.mm */,
+				85185EC3184FB2C200FDD2BB /* BoardModelTest.mm */,
 				85185EBE184FB2C200FDD2BB /* Supporting Files */,
 			);
 			path = BeadBreakerTests;
@@ -154,6 +133,18 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		85185ECF184FB48000FDD2BB /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				85185EA5184FB2C100FDD2BB /* main.cpp */,
+				85185ED2184FB95D00FDD2BB /* BoardModel.cpp */,
+				85185ED3184FB95D00FDD2BB /* BoardModel.h */,
+				85185ED5184FB9EE00FDD2BB /* coretypes.h */,
+			);
+			name = Source;
+			path = ../../Source;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -164,6 +155,7 @@
 				85185E92184FB2C100FDD2BB /* Sources */,
 				85185E93184FB2C100FDD2BB /* Frameworks */,
 				85185E94184FB2C100FDD2BB /* Resources */,
+				85185ED0184FB68D00FDD2BB /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -185,7 +177,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				85185EBC184FB2C200FDD2BB /* PBXTargetDependency */,
 			);
 			name = BeadBreakerTests;
 			productName = BeadBreakerTests;
@@ -231,9 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				85185EA4184FB2C100FDD2BB /* InfoPlist.strings in Resources */,
-				85185EB2184FB2C200FDD2BB /* Images.xcassets in Resources */,
 				85185EAA184FB2C100FDD2BB /* Credits.rtf in Resources */,
-				85185EB0184FB2C200FDD2BB /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,8 +241,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85185EAD184FB2C100FDD2BB /* AppDelegate.m in Sources */,
-				85185EA6184FB2C100FDD2BB /* main.m in Sources */,
+				85185ED4184FB95D00FDD2BB /* BoardModel.cpp in Sources */,
+				85185EA6184FB2C100FDD2BB /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,19 +250,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85185EC4184FB2C200FDD2BB /* BeadBreakerTests.m in Sources */,
+				854F712718512D1400168F5E /* BoardModel.cpp in Sources */,
+				85185EC4184FB2C200FDD2BB /* BoardModelTest.mm in Sources */,
+				854F71291852724200168F5E /* PositionTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		85185EBC184FB2C200FDD2BB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 85185E95184FB2C100FDD2BB /* BeadBreaker */;
-			targetProxy = 85185EBB184FB2C200FDD2BB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		85185EA2184FB2C100FDD2BB /* InfoPlist.strings */ = {
@@ -290,14 +273,6 @@
 				85185EA9184FB2C100FDD2BB /* en */,
 			);
 			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
-		85185EAE184FB2C200FDD2BB /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				85185EAF184FB2C200FDD2BB /* Base */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		85185EC0184FB2C200FDD2BB /* InfoPlist.strings */ = {
@@ -327,6 +302,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -342,6 +318,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../Source,
+				);
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -366,6 +348,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -374,6 +357,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					../../../Source,
+				);
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
@@ -384,8 +373,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BeadBreaker/BeadBreaker-Prefix.pch";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "BeadBreaker/BeadBreaker-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -397,8 +387,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BeadBreaker/BeadBreaker-Prefix.pch";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "BeadBreaker/BeadBreaker-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -408,11 +398,11 @@
 		85185ECB184FB2C200FDD2BB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeadBreaker.app/Contents/MacOS/BeadBreaker";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeadBreaker/BeadBreaker-Prefix.pch";
@@ -421,8 +411,8 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "BeadBreakerTests/BeadBreakerTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -430,17 +420,17 @@
 		85185ECC184FB2C200FDD2BB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BeadBreaker.app/Contents/MacOS/BeadBreaker";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeadBreaker/BeadBreaker-Prefix.pch";
 				INFOPLIST_FILE = "BeadBreakerTests/BeadBreakerTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
@@ -464,6 +454,7 @@
 				85185EC9184FB2C200FDD2BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		85185ECA184FB2C200FDD2BB /* Build configuration list for PBXNativeTarget "BeadBreakerTests" */ = {
 			isa = XCConfigurationList;
@@ -472,6 +463,7 @@
 				85185ECC184FB2C200FDD2BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
