@@ -24,31 +24,32 @@ public:
     
     const Board&    getBoard() const;
     
-    const IndexSet& getRemovedIndexes() const;
+    bool            move( const Position& posA, const Position& posB );
+    
+    int             findMathces();
+    
+    const IndexSet& getMatches() const;
+    
+    void            flushMatches();
     
     PieceType       getPieceType( const Position& pos ) const;
     
-    bool            tryMove( const Position& pos, Direction dir );
-    
-    bool            update();
-    
     bool            isValidPosition( const Position& pos ) const;
+    
+    void            randomize();
     
 private:
     void            swap( const Position& a, const Position& b );
     
-    int             checkBoard();
-    
     void            checkPiece( Position p, Unit dx, Unit dy, PieceType type, IndexSet &results ) const;
     
-    void            updateBoardState();
+    void            removeMatches();
     
     PieceType       generateRandomValue() const;
     
 private:
     Board       m_board;
-    IndexSet    m_moved;
-    IndexSet    m_removed;
+    IndexSet    m_matches;
 };
 
 

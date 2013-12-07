@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		85185EA4184FB2C100FDD2BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85185EA2184FB2C100FDD2BB /* InfoPlist.strings */; };
-		85185EA6184FB2C100FDD2BB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85185EA5184FB2C100FDD2BB /* main.cpp */; };
 		85185EAA184FB2C100FDD2BB /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 85185EA8184FB2C100FDD2BB /* Credits.rtf */; };
 		85185EC2184FB2C200FDD2BB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 85185EC0184FB2C200FDD2BB /* InfoPlist.strings */; };
 		85185EC4184FB2C200FDD2BB /* BoardModelTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 85185EC3184FB2C200FDD2BB /* BoardModelTest.mm */; };
@@ -17,6 +16,9 @@
 		85185ED4184FB95D00FDD2BB /* BoardModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85185ED2184FB95D00FDD2BB /* BoardModel.cpp */; };
 		854F712718512D1400168F5E /* BoardModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85185ED2184FB95D00FDD2BB /* BoardModel.cpp */; };
 		854F71291852724200168F5E /* PositionTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 854F71281852724200168F5E /* PositionTest.mm */; };
+		854F712C18533B8600168F5E /* BoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 854F712A18533B8600168F5E /* BoardView.cpp */; };
+		854F71321853543E00168F5E /* BeadSprite.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 854F71311853543E00168F5E /* BeadSprite.bmp */; };
+		854F71341853760300168F5E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 854F71331853760300168F5E /* main.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,7 +38,6 @@
 		85185E96184FB2C100FDD2BB /* BeadBreaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeadBreaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85185EA1184FB2C100FDD2BB /* BeadBreaker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeadBreaker-Info.plist"; sourceTree = "<group>"; };
 		85185EA3184FB2C100FDD2BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		85185EA5184FB2C100FDD2BB /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../XCode/BeadBreaker/BeadBreaker/main.cpp; sourceTree = "<group>"; };
 		85185EA9184FB2C100FDD2BB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		85185EB7184FB2C200FDD2BB /* BeadBreakerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BeadBreakerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		85185EBF184FB2C200FDD2BB /* BeadBreakerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeadBreakerTests-Info.plist"; sourceTree = "<group>"; };
@@ -47,6 +48,10 @@
 		85185ED3184FB95D00FDD2BB /* BoardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardModel.h; sourceTree = "<group>"; };
 		85185ED5184FB9EE00FDD2BB /* coretypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = coretypes.h; sourceTree = "<group>"; };
 		854F71281852724200168F5E /* PositionTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PositionTest.mm; sourceTree = "<group>"; };
+		854F712A18533B8600168F5E /* BoardView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardView.cpp; sourceTree = "<group>"; };
+		854F712B18533B8600168F5E /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
+		854F71311853543E00168F5E /* BeadSprite.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = BeadSprite.bmp; sourceTree = "<group>"; };
+		854F71331853760300168F5E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +112,7 @@
 		85185EA0184FB2C100FDD2BB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				854F712D18534F8A00168F5E /* Resources */,
 				85185EA1184FB2C100FDD2BB /* BeadBreaker-Info.plist */,
 				85185EA2184FB2C100FDD2BB /* InfoPlist.strings */,
 				85185EA8184FB2C100FDD2BB /* Credits.rtf */,
@@ -136,13 +142,24 @@
 		85185ECF184FB48000FDD2BB /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				85185EA5184FB2C100FDD2BB /* main.cpp */,
+				854F71331853760300168F5E /* main.cpp */,
 				85185ED2184FB95D00FDD2BB /* BoardModel.cpp */,
 				85185ED3184FB95D00FDD2BB /* BoardModel.h */,
 				85185ED5184FB9EE00FDD2BB /* coretypes.h */,
+				854F712A18533B8600168F5E /* BoardView.cpp */,
+				854F712B18533B8600168F5E /* BoardView.h */,
 			);
 			name = Source;
 			path = ../../Source;
+			sourceTree = "<group>";
+		};
+		854F712D18534F8A00168F5E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				854F71311853543E00168F5E /* BeadSprite.bmp */,
+			);
+			name = Resources;
+			path = ../../../Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +240,7 @@
 			files = (
 				85185EA4184FB2C100FDD2BB /* InfoPlist.strings in Resources */,
 				85185EAA184FB2C100FDD2BB /* Credits.rtf in Resources */,
+				854F71321853543E00168F5E /* BeadSprite.bmp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +260,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				85185ED4184FB95D00FDD2BB /* BoardModel.cpp in Sources */,
-				85185EA6184FB2C100FDD2BB /* main.cpp in Sources */,
+				854F712C18533B8600168F5E /* BoardView.cpp in Sources */,
+				854F71341853760300168F5E /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

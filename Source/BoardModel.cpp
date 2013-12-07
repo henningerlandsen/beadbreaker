@@ -39,9 +39,9 @@ BoardModel::getBoard() const
 
 
 const IndexSet&
-BoardModel::getRemovedIndexes() const
+BoardModel::getMatches() const
 {
-    return m_removed;
+    return m_matches;
 }
 
 
@@ -53,46 +53,21 @@ BoardModel::getPieceType( const Position& pos ) const
 }
 
 
-bool
-BoardModel::tryMove( const Position& posA, Direction dir )
-{
-    Position posB = posA;
-    switch ( dir ) {
-        case Up:
-            posB.y -= 1;
-            break;
-        case Down:
-            posB.y += 1;
-            break;
-        case Left:
-            posB.x -= 1;
-            break;
-        case Right:
-            posB.x += 1;
-            break;
-        default:
-            // Invalid direction
-            return false;
-    }
-    
-    if ( !isValidPosition( posB ) )
-        return false;
 
+bool
+BoardModel::move( const Position &posA, const Position& posB )
+{
+    if ( !isValidPosition( posA) || !isValidPosition( posB ) )
+        return false;
     
-    // swap types
+    // Check that pieces are neighbours
+    if ( ( abs( posA.x - posB.x ) + abs( posA.y - posB.y ) ) != 1 )
+        return false;
+    
+    // Swap pieces
     swap( posA, posB );
     
-    // check for mathces
-    if ( checkBoard() )
-    {
-        return true;
-    }
-    else
-    {
-        // swap back
-        swap( posA, posB );
-        return false;
-    }
+    return true;
 }
 
 
@@ -116,9 +91,9 @@ BoardModel::swap( const Position &a, const Position &b )
 
 
 int
-BoardModel::checkBoard()
+BoardModel::findMathces()
 {
-    int removedCount = 0;
+    int matchCount = (int)m_matches.size();
     
     for ( Unit x = 0; x < BOARD_SIZE; ++x )
     {
@@ -128,68 +103,61 @@ BoardModel::checkBoard()
             Position p( x, y );
             
             // Check that this piece is not already matched
-            if ( m_removed.find( p ) == m_removed.end() )
+            if ( m_matches.find( p ) == m_matches.end() )
             {
-                IndexSet mathces;
+                IndexSet tempMatches;
                 PieceType type = getPieceType( p );
                 
                 // Count current piece as a match
-                mathces.insert( p );
+                tempMatches.insert( p );
                 
                 // Check horizontal matches
                 // ------------------------
-                checkPiece( p, 1, 0, type, mathces );   // Right
-                checkPiece( p, -1, 0, type, mathces );  // Left
+                checkPiece( p, 1, 0, type, tempMatches );   // Right
+                checkPiece( p, -1, 0, type, tempMatches );  // Left
                 
-                if ( mathces.size() >= 3 )
+                if ( tempMatches.size() >= 3 )
                 {
                     // Schedule for removal
-                    m_removed.insert( mathces.begin(), mathces.end() );
-                    removedCount += mathces.size();
+                    m_matches.insert( tempMatches.begin(), tempMatches.end() );
                 }
                 // Reset match count
-                mathces.clear();
+                tempMatches.clear();
                 
                 // Count current piece as match
-                mathces.insert( p );
+                tempMatches.insert( p );
                 
                 // Check vertical mathces
                 // ----------------------
-                checkPiece( p, 0, 1, type, mathces );   // Down
-                checkPiece( p, 0, -1, type, mathces );  // Up
+                checkPiece( p, 0, 1, type, tempMatches );   // Down
+                checkPiece( p, 0, -1, type, tempMatches );  // Up
                 
                 // Is valid match?
-                if ( mathces.size() >= 3 )
+                if ( tempMatches.size() >= 3 )
                 {
                     // Schedule for removal
-                    m_removed.insert( mathces.begin(), mathces.end() );
-                    removedCount += mathces.size();
+                    m_matches.insert( tempMatches.begin(), tempMatches.end() );
                 }
                 
                 // Reset match count
-                mathces.clear();
+                tempMatches.clear();
             }
         }
     }
     
-    if ( removedCount )
-    {
-        updateBoardState();
-    }
-    
-    return removedCount;
+    return (int)m_matches.size() - matchCount;
 }
 
 
 
 void
-BoardModel::updateBoardState()
+BoardModel::flushMatches()
 {
     // Indexes are sorted by column and from top to bottom. This allows us to
     // replace top->bottom and assume we are not disturbing other removed pieces.
     IndexSet::const_iterator
-        iter = m_removed.cbegin(),
-        end  = m_removed.cend();
+        iter = m_matches.cbegin(),
+        end  = m_matches.cend();
     
     for (; iter != end; ++iter )
     {
@@ -204,6 +172,8 @@ BoardModel::updateBoardState()
         
         m_board[removed] = generateRandomValue();
     }
+    
+    m_matches.clear();
 }
 
 
@@ -223,4 +193,23 @@ PieceType
 BoardModel::generateRandomValue() const
 {
     return std::rand() % MAX_TYPES;
+}
+
+
+void
+BoardModel::randomize()
+{
+    // This could be done smarter to avoid the step below.
+    for ( Unit x = 0; x < BOARD_SIZE; ++x ) {
+        for ( Unit y = 0; y < BOARD_SIZE; ++y ) {
+            m_board[Position(x,y)] = generateRandomValue();
+        }
+    }
+    
+    // Remove all random generated matches until we
+    // have a stable board
+    while( findMathces() )
+    {
+        flushMatches();
+    }
 }
