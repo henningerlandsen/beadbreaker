@@ -12,7 +12,6 @@
 #include "coretypes.h"
 #include <set>
 
-typedef std::set< Position > IndexSet;
 
 class BoardModel {
     

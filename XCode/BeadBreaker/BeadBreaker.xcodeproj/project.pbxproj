@@ -16,9 +16,11 @@
 		85185ED4184FB95D00FDD2BB /* BoardModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85185ED2184FB95D00FDD2BB /* BoardModel.cpp */; };
 		854F712718512D1400168F5E /* BoardModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 85185ED2184FB95D00FDD2BB /* BoardModel.cpp */; };
 		854F71291852724200168F5E /* PositionTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 854F71281852724200168F5E /* PositionTest.mm */; };
-		854F712C18533B8600168F5E /* BoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 854F712A18533B8600168F5E /* BoardView.cpp */; };
 		854F71321853543E00168F5E /* BeadSprite.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 854F71311853543E00168F5E /* BeadSprite.bmp */; };
 		854F71341853760300168F5E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 854F71331853760300168F5E /* main.cpp */; };
+		854F713818548FEC00168F5E /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 854F713618548FEC00168F5E /* Game.cpp */; };
+		854F713B1854904A00168F5E /* Painter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 854F71391854904A00168F5E /* Painter.cpp */; };
+		854F713E1854AF2800168F5E /* BoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 854F713C1854AF2800168F5E /* BoardView.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,10 +50,15 @@
 		85185ED3184FB95D00FDD2BB /* BoardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardModel.h; sourceTree = "<group>"; };
 		85185ED5184FB9EE00FDD2BB /* coretypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = coretypes.h; sourceTree = "<group>"; };
 		854F71281852724200168F5E /* PositionTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PositionTest.mm; sourceTree = "<group>"; };
-		854F712A18533B8600168F5E /* BoardView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardView.cpp; sourceTree = "<group>"; };
-		854F712B18533B8600168F5E /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		854F71311853543E00168F5E /* BeadSprite.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = BeadSprite.bmp; sourceTree = "<group>"; };
 		854F71331853760300168F5E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		854F713518537F6400168F5E /* Notes.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes.md; sourceTree = "<group>"; };
+		854F713618548FEC00168F5E /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		854F713718548FEC00168F5E /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		854F71391854904A00168F5E /* Painter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Painter.cpp; sourceTree = "<group>"; };
+		854F713A1854904A00168F5E /* Painter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Painter.h; sourceTree = "<group>"; };
+		854F713C1854AF2800168F5E /* BoardView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardView.cpp; sourceTree = "<group>"; };
+		854F713D1854AF2800168F5E /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +83,7 @@
 		85185E8D184FB2C100FDD2BB = {
 			isa = PBXGroup;
 			children = (
+				854F713518537F6400168F5E /* Notes.md */,
 				85185ECF184FB48000FDD2BB /* Source */,
 				85185E9F184FB2C100FDD2BB /* BeadBreaker */,
 				85185EBD184FB2C200FDD2BB /* BeadBreakerTests */,
@@ -146,8 +154,12 @@
 				85185ED2184FB95D00FDD2BB /* BoardModel.cpp */,
 				85185ED3184FB95D00FDD2BB /* BoardModel.h */,
 				85185ED5184FB9EE00FDD2BB /* coretypes.h */,
-				854F712A18533B8600168F5E /* BoardView.cpp */,
-				854F712B18533B8600168F5E /* BoardView.h */,
+				854F713618548FEC00168F5E /* Game.cpp */,
+				854F713718548FEC00168F5E /* Game.h */,
+				854F71391854904A00168F5E /* Painter.cpp */,
+				854F713A1854904A00168F5E /* Painter.h */,
+				854F713C1854AF2800168F5E /* BoardView.cpp */,
+				854F713D1854AF2800168F5E /* BoardView.h */,
 			);
 			name = Source;
 			path = ../../Source;
@@ -259,9 +271,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				854F713818548FEC00168F5E /* Game.cpp in Sources */,
 				85185ED4184FB95D00FDD2BB /* BoardModel.cpp in Sources */,
-				854F712C18533B8600168F5E /* BoardView.cpp in Sources */,
 				854F71341853760300168F5E /* main.cpp in Sources */,
+				854F713B1854904A00168F5E /* Painter.cpp in Sources */,
+				854F713E1854AF2800168F5E /* BoardView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

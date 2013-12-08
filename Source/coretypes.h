@@ -9,6 +9,8 @@
 #ifndef BeadBreaker_typdefs_h
 #define BeadBreaker_typdefs_h
 
+#include <set>
+
 #define BOARD_SIZE 8
 
 // Directions on the board
@@ -85,6 +87,9 @@ inline bool operator !=( const Position &lhs, const Position &rhs )
 {
     return !( lhs == rhs );
 }
+
+
+typedef std::set< Position > IndexSet;
 
 
 
