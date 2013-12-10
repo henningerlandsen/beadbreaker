@@ -34,10 +34,10 @@ private:
     {
         WaitForMove,
         Grabbing,
-        SwapWin,
+        SwapTest,
         SwapFail,
-        DestroyMatches,
         CheckBoard,
+        DestroyMatches,
         Falling,
         Quit
     };

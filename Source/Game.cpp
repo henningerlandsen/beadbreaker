@@ -39,18 +39,34 @@ Game::run()
 
     // Animation constants:
     const int animGrabLength = 30;
-    const int animSwapLength = 30;
+    const int animSwapLength = 10;
+    const int animDestroyLength = 10;
 
     // Animation frame counter
     uint animFrame = 0;
+
+    PieceType pieces[8][8] = {
+        { 0, 1, 0, 1, 0, 1, 0, 1 },
+        { 3, 3, 3, 3, 3, 3, 3, 3 },
+        { 0, 1, 0, 1, 0, 1, 0, 1 },
+        { 3, 3, 3, 3, 3, 3, 3, 3 },
+        { 0, 1, 0, 1, 0, 1, 0, 1 },
+        { 3, 3, 3, 3, 3, 3, 3, 3 },
+        { 0, 1, 0, 1, 0, 1, 0, 1 },
+        { 3, 3, 3, 3, 3, 3, 3, 3 },
+    };
+    
+    Board b;
+    b.setPieces( pieces );
     
     // Setup random board
     BoardModel board;
-    board.randomize();
+    board.setBoard( b );
+    //board.randomize();
     
     BoardView boardView;
     
-    // Initial game state
+    // Let the pieces fall from above
     GameState state = Falling;
     
     SDL_Point grabPosition;
@@ -131,21 +147,30 @@ Game::run()
                                 swapDY = dy / ady;
                                 swapDX = 0;
                             }
-                            std::cout << "Moving:" << swapDX << ", " << swapDY << std::endl;
+
                             Position other = currentTile.shifted( swapDX, swapDY );
 
                             // Is move possible?
                             if ( board.move( currentTile, other ) )
                             {
-                                // Did move result in a match
-                                if ( board.findMathces() )
-                                    state = SwapWin;
-                                else
-                                    state = SwapFail;
+                                state = SwapTest;
+                                animFrame = 0;
+                                
+                                // Did move result in a match?
+//                                if ( board.findMathces() )
+//                                {
+//                                    state = SwapTest;
+//                                }
+//                                else
+//                                {
+//                                    state = SwapFail;
+//                                }
                             }
                             else
                             {
-                                
+                                // Drop tile
+                                boardView.resetState( currentTile );
+                                state = WaitForMove;
                             }
                         }
                     }
@@ -171,53 +196,91 @@ Game::run()
                 }
                 break;
             }
-            case SwapWin:
-                // Update swap animation
-                // When finished, check board for matches
-                if ( )
-                break;
+            case SwapTest:
             case SwapFail:
-                // Update swap animation
-                // When finished, await user move
+            {
+                // Playing animation?
+                if ( animFrame <= animSwapLength )
+                {
+                    boardView.animateSwap(currentTile,
+                                          currentTile.shifted( swapDX, swapDY ),
+                                          animFrame / (float)animSwapLength );
+                }
+                else
+                {
+                    animFrame = -1;                  // Reset animation counter
+                    
+                    if (state == SwapTest)
+                        if ( board.findMathces() )
+                            state = DestroyMatches; // Mathces found
+                        else
+                        {
+                            board.move(currentTile,
+                                       currentTile.shifted( swapDX, swapDY ) );
+                            state = SwapFail;       // Move back
+                        }
+                    else
+                        state = WaitForMove;        // Finished moving back
+                }
                 break;
+            }
             case CheckBoard:
-                // Check for matches
+            {
+                if ( board.findMathces() )          // Any new mathces?
+                {
+                    animFrame = 0;
+                    state = DestroyMatches;         // Destroy them as well
+                }
+                else
+                    state = WaitForMove;            // Wait for next move
                 break;
+            }
+            case DestroyMatches:
+            {
+                // Playing destroy animation?
+                if ( animFrame <= animDestroyLength )
+                {
+                    boardView.animateDestroying( board.getMatches(), animFrame / (float)animDestroyLength );
+                }
+                // Make ready for falling peaces
+                else
+                {
+                    // Reset animation counter
+                    animFrame = -1;
+                    
+                    // Get list of mathces
+                    const IndexSet& matches = board.getMatches();
+                    
+                    // Reset destroy state
+                    boardView.animateDestroying( matches, 0 );
+                    // Move all pieces up to where they fall from
+                    boardView.prepareFall( matches );
+                    
+                    // Clear matches
+                    board.flushMatches();
+                    state = Falling;
+                }
+                break;
+            }
             case Falling:
             {
-                                    
-                    if ( doneFalling )
-                        state = WaitForMove;
-                }
+                // Update falling pices
+                bool done = boardView.animateFalling( animFrame );
+                if ( done )
+                    state = CheckBoard;
                 break;
             }
             case Quit:
                 continue;
                 break;
                 
+            case WaitForMove:
             default:
                 break;
         }
         
-        
-        m_pPainter->drawBackground();
-        
-        for ( Unit x = 0; x < BOARD_SIZE; ++x )
-        {
-            for ( Unit y = 0; y < BOARD_SIZE; ++y )
-            {
-                Position p( x, y );
-                PieceType type = board.getPieceType( p );
-                PieceState state = viewModel[p];
-                m_pPainter->drawTile(m_tileSize * (x + state.dx),
-                                     m_tileSize * (y + state.dy),
-                                     0,
-                                     type,
-                                     state.scale );
-            }
-        }
-        
-        m_pPainter->swap();
+        // Draw the model
+        boardView.draw( m_pPainter, &board );
         
         ++animFrame;
     }

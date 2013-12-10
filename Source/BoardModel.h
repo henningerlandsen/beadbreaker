@@ -23,6 +23,8 @@ public:
     
     const Board&    getBoard() const;
     
+    bool            canMove( const Position &posA, const Position &posB );
+    
     bool            move( const Position& posA, const Position& posB );
     
     int             findMathces();

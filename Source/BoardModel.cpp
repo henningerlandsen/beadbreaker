@@ -55,7 +55,7 @@ BoardModel::getPieceType( const Position& pos ) const
 
 
 bool
-BoardModel::move( const Position &posA, const Position& posB )
+BoardModel::canMove( const Position &posA, const Position &posB )
 {
     if ( !isValidPosition( posA) || !isValidPosition( posB ) )
         return false;
@@ -64,10 +64,20 @@ BoardModel::move( const Position &posA, const Position& posB )
     if ( ( abs( posA.x - posB.x ) + abs( posA.y - posB.y ) ) != 1 )
         return false;
     
-    // Swap pieces
-    swap( posA, posB );
-    
     return true;
+}
+
+
+bool
+BoardModel::move( const Position &posA, const Position& posB )
+{
+    if ( canMove( posA, posB ) )
+    {
+        // Swap pieces
+        swap( posA, posB );
+        return true;
+    }
+    return false;
 }
 
 

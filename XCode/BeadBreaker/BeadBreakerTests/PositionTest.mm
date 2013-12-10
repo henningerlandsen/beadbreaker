@@ -30,17 +30,21 @@
 
 - (void)testOperators
 {
-    Position p1( 0, 0 );
-    Position p2( 0, 1 );
-    Position p3( 1, 0 );
+    XCTAssertTrue( Position(1,5) < Position(2,3), @"Test column priority");
+    XCTAssertFalse( Position(1,5) > Position(2,3), @"Test column priority");
+}
+
+- (void)testValidity
+{
+
+    XCTAssertFalse( Position().isValid(), @"Position should be invalid by default" );
+    XCTAssertFalse( Position(0,8).isValid(), @"Position should be out of bounds");
+    XCTAssertFalse( Position(8,0).isValid(), @"Position should be out of bounds");
+    XCTAssertTrue( Position(0,0).isValid(), @"Should be valid position");
+    XCTAssertTrue( Position(0,7).isValid(), @"Should be valid position");
+    XCTAssertTrue( Position(7,0).isValid(), @"Should be valid position");
+    XCTAssertTrue( Position(5,5).isValid(), @"Should be valid position");
     
-    XCTAssertTrue( p1 < p2 );
-    XCTAssertTrue( p2 > p1 );
-    XCTAssertTrue( p1 == p1 );
-    XCTAssertFalse( p1 == p2 );
-    XCTAssertTrue( p1 != p2 );
-    XCTAssertTrue( p3 > p1 );
-    XCTAssertTrue( p3 > p2 );
 }
 
 @end

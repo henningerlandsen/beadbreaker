@@ -48,7 +48,8 @@ struct Position
     Unit x;
     Unit y;
     
-    Position( Unit _x, Unit _y )
+    // Default creates invalid position
+    Position( Unit _x = -1, Unit _y = -1 )
     : x(_x), y(_y)
     {
         
@@ -66,11 +67,16 @@ struct Position
     {
         return Position( x + dx, y + dy );
     }
+    
+    bool isValid() const
+    {
+        return  x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE;
+    }
 };
 
 inline bool operator <( const Position &lhs, const Position &rhs )
 {
-    return lhs.x < rhs.x || lhs.y < rhs.y;
+    return lhs.x < rhs.x || (lhs.x == rhs.x && lhs.y < rhs.y);
 }
 
 inline bool operator >( const Position &lhs, const Position &rhs )
