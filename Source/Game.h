@@ -10,8 +10,7 @@
 #define __BeadBreaker__Game__
 
 
-class Painter;
-class BoardModel;
+class BoardView;
 
 class Game
 {
@@ -24,7 +23,7 @@ public:
     };
     
 public:
-    Game( Painter* painter );
+    Game( BoardView* m_pView );
     ~Game();
     
     int run();
@@ -39,11 +38,11 @@ private:
         CheckBoard,
         DestroyMatches,
         Falling,
-        Quit
+        Quit,
+        GameOver,
     };
     
-    Painter*    m_pPainter;
-    int         m_tileSize;
+    BoardView*  m_pView;
 };
 
 #endif /* defined(__BeadBreaker__Game__) */

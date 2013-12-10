@@ -17,10 +17,10 @@
 
 
 
-Game::Game( Painter* painter )
-: m_pPainter( painter )
+Game::Game( BoardView* view )
+: m_pView( view )
 {
-    m_tileSize = m_pPainter->getTileSize();
+    
 }
 
 
@@ -34,9 +34,6 @@ Game::~Game()
 int
 Game::run()
 {
-    if ( !m_pPainter )
-        return Error;
-
     // Animation constants:
     const int animGrabLength = 30;
     const int animSwapLength = 10;
@@ -44,33 +41,20 @@ Game::run()
 
     // Animation frame counter
     uint animFrame = 0;
-
-    PieceType pieces[8][8] = {
-        { 0, 1, 0, 1, 0, 1, 0, 1 },
-        { 3, 3, 3, 3, 3, 3, 3, 3 },
-        { 0, 1, 0, 1, 0, 1, 0, 1 },
-        { 3, 3, 3, 3, 3, 3, 3, 3 },
-        { 0, 1, 0, 1, 0, 1, 0, 1 },
-        { 3, 3, 3, 3, 3, 3, 3, 3 },
-        { 0, 1, 0, 1, 0, 1, 0, 1 },
-        { 3, 3, 3, 3, 3, 3, 3, 3 },
-    };
-    
-    Board b;
-    b.setPieces( pieces );
     
     // Setup random board
     BoardModel board;
-    board.setBoard( b );
-    //board.randomize();
-    
-    BoardView boardView;
+    board.randomize();
     
     // Let the pieces fall from above
     GameState state = Falling;
     
     SDL_Point grabPosition;
     Position  currentTile(-1, -1);
+    
+    // Setup one minute timeout
+    uint currentTime = SDL_GetTicks();
+    uint maxTime     = currentTime + 60000;
     
     // Swapping direction
     int swapDX = 0;
@@ -81,6 +65,18 @@ Game::run()
     // Run game loop
     while ( state != Quit )
     {
+;
+        
+        if ( currentTime >= maxTime )
+        {
+            currentTime = maxTime;
+            state = GameOver;
+        }
+        else
+        {
+            currentTime = SDL_GetTicks();
+        }
+        
         // Handle user input events
         while ( SDL_PollEvent( &e ) )
         {
@@ -93,8 +89,7 @@ Game::run()
                         grabPosition.y = e.button.y;
                         
                         // Note: Assumes integer division
-                        currentTile.x = grabPosition.x / m_tileSize;
-                        currentTile.y = grabPosition.y / m_tileSize;
+                        currentTile = m_pView->mapToPiece( grabPosition.x, grabPosition.y );
                         
                         if ( board.isValidPosition( currentTile ) )
                         {
@@ -115,7 +110,7 @@ Game::run()
                     {
                         state = WaitForMove;
                         // Reset item state
-                        boardView.resetState( currentTile );
+                        m_pView->resetState( currentTile );
                         
                         currentTile = Position( -1, -1 );
                     }
@@ -156,20 +151,11 @@ Game::run()
                                 state = SwapTest;
                                 animFrame = 0;
                                 
-                                // Did move result in a match?
-//                                if ( board.findMathces() )
-//                                {
-//                                    state = SwapTest;
-//                                }
-//                                else
-//                                {
-//                                    state = SwapFail;
-//                                }
                             }
                             else
                             {
                                 // Drop tile
-                                boardView.resetState( currentTile );
+                                m_pView->resetState( currentTile );
                                 state = WaitForMove;
                             }
                         }
@@ -192,7 +178,7 @@ Game::run()
                 // Update grab animation
                 if ( animFrame <= animGrabLength )
                 {
-                    boardView.animateGrab( currentTile, animFrame / (float)animGrabLength );
+                    m_pView->animateGrab( currentTile, animFrame / (float)animGrabLength );
                 }
                 break;
             }
@@ -202,7 +188,7 @@ Game::run()
                 // Playing animation?
                 if ( animFrame <= animSwapLength )
                 {
-                    boardView.animateSwap(currentTile,
+                    m_pView->animateSwap(currentTile,
                                           currentTile.shifted( swapDX, swapDY ),
                                           animFrame / (float)animSwapLength );
                 }
@@ -240,7 +226,7 @@ Game::run()
                 // Playing destroy animation?
                 if ( animFrame <= animDestroyLength )
                 {
-                    boardView.animateDestroying( board.getMatches(), animFrame / (float)animDestroyLength );
+                    m_pView->animateDestroying( board.getMatches(), animFrame / (float)animDestroyLength );
                 }
                 // Make ready for falling peaces
                 else
@@ -252,9 +238,9 @@ Game::run()
                     const IndexSet& matches = board.getMatches();
                     
                     // Reset destroy state
-                    boardView.animateDestroying( matches, 0 );
+                    m_pView->animateDestroying( matches, 0 );
                     // Move all pieces up to where they fall from
-                    boardView.prepareFall( matches );
+                    m_pView->prepareFall( matches );
                     
                     // Clear matches
                     board.flushMatches();
@@ -265,7 +251,7 @@ Game::run()
             case Falling:
             {
                 // Update falling pices
-                bool done = boardView.animateFalling( animFrame );
+                bool done = m_pView->animateFalling( animFrame );
                 if ( done )
                     state = CheckBoard;
                 break;
@@ -280,7 +266,7 @@ Game::run()
         }
         
         // Draw the model
-        boardView.draw( m_pPainter, &board );
+        m_pView->draw( &board, maxTime - currentTime );
         
         ++animFrame;
     }

@@ -13,6 +13,7 @@
 
 class Painter;
 class BoardModel;
+class Sprite;
 
 /**
  * BoardView
@@ -22,7 +23,7 @@ class BoardModel;
 class BoardView
 {
 public:
-    BoardView();
+    BoardView( Painter* painter );
     ~BoardView();
     
     void        animateGrab( const Position &a, float progress );
@@ -38,9 +39,21 @@ public:
     
     void        resetState( const Position &pos );
     
-    void        draw( const Painter* painter, const BoardModel* board ) const;
+    void        draw( const BoardModel* board, unsigned int time ) const;
     
     void        setTileSize( int tileSize );
+    
+    void        setBeadSprite( Sprite* sprite );
+    
+    void        setBackgroundSrite( Sprite* sprite );
+    
+    void        setNumberSprite( Sprite* sprite );
+    
+    Position    mapToPiece( int windowX, int windowY ) const;
+    
+    void        setPainter( Painter* painter );
+    
+    void        setBoardPosition( int left, int top );
     
 private:
     struct PieceState
@@ -70,8 +83,16 @@ private:
         
         PieceState pieces[BOARD_SIZE][BOARD_SIZE];
     };
+    
+    
     int         m_tileSize;
     ViewModel   m_viewModel;
+    Sprite*     m_pBeadSprite;
+    Sprite*     m_pBackground;
+    Sprite*     m_pNumberSprite;
+    Painter*    m_pPainter;
+    int         m_boardX;
+    int         m_boardY;
 };
 
 

@@ -9,6 +9,7 @@
 #include "BoardView.h"
 #include "Painter.h"
 #include "BoardModel.h"
+#include "Sprite.h"
 #include <math.h>
 #include <map>
 
@@ -16,10 +17,14 @@
 const float animGrabFreq = 15.0f;
 const float animGrabAmpl = 0.1f;
 const float fallAccelMin = 0.004f;
-const float fallAccelMax = 0.01f;
+const float fallAccelMax = 0.02f;
 
 
-BoardView::BoardView()
+BoardView::BoardView( Painter* painter )
+: m_pBackground( nullptr )
+, m_pNumberSprite( nullptr )
+, m_pBeadSprite( nullptr )
+, m_pPainter( painter )
 {
     
 }
@@ -164,11 +169,9 @@ BoardView::resetState(const Position &pos)
 
 
 void
-BoardView::draw( const Painter* painter, const BoardModel* board ) const
+BoardView::draw( const BoardModel* board, unsigned int time ) const
 {
-    painter->drawBackground();
-    
-    int tileSize = painter->getTileSize();
+    m_pPainter->drawSprite( m_pBackground, 0, 0 );
     
     for ( Unit x = 0; x < BOARD_SIZE; ++x )
     {
@@ -177,15 +180,31 @@ BoardView::draw( const Painter* painter, const BoardModel* board ) const
             Position p( x, y );
             PieceType type = board->getPieceType( p );
             PieceState state = m_viewModel[p];
-            painter->drawTile(tileSize * (x + state.dx),
-                              tileSize * (y + state.dy),
-                              0,
-                              type,
-                              state.scale );
+            m_pPainter->drawSprite(m_pBeadSprite,
+                                m_boardX + m_pBeadSprite->getTileWidth() * (x + state.dx),
+                                m_boardY + m_pBeadSprite->getTileHeight() * (y + state.dy),
+                                state.scale,
+                                0, type );
         }
     }
     
-    painter->swap();
+    
+    // Draw numbers
+    int x = 275;
+    int y = 585;
+    
+    int digit = time / 10000;
+    time -= digit * 10000;
+    m_pPainter->drawSprite(m_pNumberSprite,
+                           x, y, digit, 0 );
+    x += m_pNumberSprite->getTileWidth();
+    
+    digit = time / 1000;
+    m_pPainter->drawSprite(m_pNumberSprite,
+                           x, y, digit, 0 );
+    
+    
+    m_pPainter->swap();
     
     
 }
@@ -197,3 +216,46 @@ BoardView::setTileSize(int tileSize)
 {
     m_tileSize = tileSize;
 }
+
+
+
+void
+BoardView::setBackgroundSrite(Sprite *sprite)
+{
+    m_pBackground = sprite;
+}
+
+
+
+void
+BoardView::setBeadSprite(Sprite *sprite)
+{
+    m_pBeadSprite = sprite;
+}
+
+
+
+void
+BoardView::setNumberSprite(Sprite *sprite)
+{
+    m_pNumberSprite = sprite;
+}
+
+
+
+void
+BoardView::setBoardPosition(int left, int top)
+{
+    m_boardX = left;
+    m_boardY = top;
+}
+
+
+
+Position
+BoardView::mapToPiece(int windowX, int windowY) const
+{
+    return Position((windowX - m_boardX) / m_pBeadSprite->getTileWidth(),
+                    (windowY - m_boardY) / m_pBeadSprite->getTileHeight());
+}
+

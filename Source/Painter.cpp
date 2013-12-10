@@ -7,14 +7,13 @@
 //
 
 #include "Painter.h"
+#include "Sprite.h"
 
 #include <SDL2/SDL.h>
 
 
-Painter::Painter( SDL_Renderer* renderer, SDL_Texture* sprite, int tileSize )
+Painter::Painter( SDL_Renderer* renderer )
 : m_pRenderer( renderer )
-, m_pTileSprite( sprite )
-, m_tileSize( tileSize )
 {
     
 }
@@ -27,49 +26,43 @@ Painter::~Painter()
 }
 
 
-void
-Painter::drawBackground() const
-{
-    SDL_SetRenderDrawColor( m_pRenderer, 50, 50, 50, 255 );
-    SDL_RenderClear( m_pRenderer );
-}
-
-
 
 void
-Painter::drawTile(int x, int y, int spriteIndexX, int spriteIndexY ) const
+Painter::drawSprite( Sprite* sprite, int x, int y, int column, int row ) const
 {
     SDL_Rect clip;
-    clip.x = m_tileSize * spriteIndexX;
-    clip.y = m_tileSize * spriteIndexY;
-    clip.w = m_tileSize;
-    clip.h = m_tileSize;
+    clip.x = sprite->getTileWidth() * column;
+    clip.y = sprite->getTileHeight() * row;
+    clip.w = sprite->getTileWidth();
+    clip.h = sprite->getTileHeight();
     
     SDL_Rect rect;
     rect.x = x;
     rect.y = y;
-    rect.w = rect.h = m_tileSize;
-    SDL_RenderCopy( m_pRenderer, m_pTileSprite, &clip, &rect );
+    rect.w = sprite->getTileWidth();
+    rect.h = sprite->getTileHeight();
     
+    SDL_RenderCopy( m_pRenderer, sprite->getTexture(), &clip, &rect );
 }
 
 
 
 void
-Painter::drawTile(int x, int y, int spriteIndexX, int spriteIndexY, float scale ) const
+Painter::drawSprite( Sprite* sprite, int x, int y, float scale, int column, int row ) const
 {
     SDL_Rect clip;
-    clip.x = m_tileSize * spriteIndexX;
-    clip.y = m_tileSize * spriteIndexY;
-    clip.w = m_tileSize;
-    clip.h = m_tileSize;
+    clip.x = sprite->getTileWidth() * column;
+    clip.y = sprite->getTileHeight() * row;
+    clip.w = sprite->getTileWidth();
+    clip.h = sprite->getTileHeight();
     
     SDL_Rect rect;
-    rect.x = x - int( ( scale - 1.0f ) * m_tileSize * 0.5f );
-    rect.y = y - int( ( scale - 1.0f ) * m_tileSize * 0.5f );
-    rect.w = rect.h = m_tileSize * scale + 0.5f;
-    SDL_RenderCopy( m_pRenderer, m_pTileSprite, &clip, &rect );
-
+    rect.x = x - int( ( scale - 1.0f ) * sprite->getTileWidth() * 0.5f );
+    rect.y = y - int( ( scale - 1.0f ) * sprite->getTileHeight() * 0.5f );
+    rect.w = sprite->getTileWidth() * scale + 0.5f;
+    rect.h = sprite->getTileHeight() * scale + 0.5f;
+    
+    SDL_RenderCopy( m_pRenderer, sprite->getTexture(), &clip, &rect );
 }
 
 
@@ -78,12 +71,4 @@ void
 Painter::swap() const
 {
     SDL_RenderPresent( m_pRenderer );
-}
-
-
-
-int
-Painter::getTileSize() const
-{
-    return m_tileSize;
 }

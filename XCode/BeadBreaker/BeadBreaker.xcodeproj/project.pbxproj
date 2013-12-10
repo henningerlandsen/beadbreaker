@@ -21,6 +21,11 @@
 		854F713818548FEC00168F5E /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 854F713618548FEC00168F5E /* Game.cpp */; };
 		854F713B1854904A00168F5E /* Painter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 854F71391854904A00168F5E /* Painter.cpp */; };
 		854F713E1854AF2800168F5E /* BoardView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 854F713C1854AF2800168F5E /* BoardView.cpp */; };
+		855E3EE0185787DE002659FE /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 855E3EDF185787DE002659FE /* SDL2_image.framework */; };
+		855E3EE51857A4C7002659FE /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 855E3EE31857A4C7002659FE /* Sprite.cpp */; };
+		855E3EE81857AFE4002659FE /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 855E3EE61857AFE4002659FE /* Background.png */; };
+		855E3EE91857AFE4002659FE /* BeadSprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 855E3EE71857AFE4002659FE /* BeadSprite.png */; };
+		855E3EEB1857C028002659FE /* NumberSprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 855E3EEA1857C028002659FE /* NumberSprite.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +64,12 @@
 		854F713A1854904A00168F5E /* Painter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Painter.h; sourceTree = "<group>"; };
 		854F713C1854AF2800168F5E /* BoardView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardView.cpp; sourceTree = "<group>"; };
 		854F713D1854AF2800168F5E /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
+		855E3EDF185787DE002659FE /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		855E3EE31857A4C7002659FE /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
+		855E3EE41857A4C7002659FE /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		855E3EE61857AFE4002659FE /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
+		855E3EE71857AFE4002659FE /* BeadSprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BeadSprite.png; sourceTree = "<group>"; };
+		855E3EEA1857C028002659FE /* NumberSprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NumberSprite.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				855E3EE0185787DE002659FE /* SDL2_image.framework in Frameworks */,
 				85185ECE184FB43900FDD2BB /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,6 +116,7 @@
 		85185E98184FB2C100FDD2BB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				855E3EDF185787DE002659FE /* SDL2_image.framework */,
 				85185ECD184FB43900FDD2BB /* SDL2.framework */,
 			);
 			name = Frameworks;
@@ -160,6 +173,8 @@
 				854F713A1854904A00168F5E /* Painter.h */,
 				854F713C1854AF2800168F5E /* BoardView.cpp */,
 				854F713D1854AF2800168F5E /* BoardView.h */,
+				855E3EE31857A4C7002659FE /* Sprite.cpp */,
+				855E3EE41857A4C7002659FE /* Sprite.h */,
 			);
 			name = Source;
 			path = ../../Source;
@@ -168,6 +183,9 @@
 		854F712D18534F8A00168F5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				855E3EEA1857C028002659FE /* NumberSprite.png */,
+				855E3EE61857AFE4002659FE /* Background.png */,
+				855E3EE71857AFE4002659FE /* BeadSprite.png */,
 				854F71311853543E00168F5E /* BeadSprite.bmp */,
 			);
 			name = Resources;
@@ -251,6 +269,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				85185EA4184FB2C100FDD2BB /* InfoPlist.strings in Resources */,
+				855E3EEB1857C028002659FE /* NumberSprite.png in Resources */,
+				855E3EE91857AFE4002659FE /* BeadSprite.png in Resources */,
+				855E3EE81857AFE4002659FE /* Background.png in Resources */,
 				85185EAA184FB2C100FDD2BB /* Credits.rtf in Resources */,
 				854F71321853543E00168F5E /* BeadSprite.bmp in Resources */,
 			);
@@ -273,6 +294,7 @@
 			files = (
 				854F713818548FEC00168F5E /* Game.cpp in Sources */,
 				85185ED4184FB95D00FDD2BB /* BoardModel.cpp in Sources */,
+				855E3EE51857A4C7002659FE /* Sprite.cpp in Sources */,
 				854F71341853760300168F5E /* main.cpp in Sources */,
 				854F713B1854904A00168F5E /* Painter.cpp in Sources */,
 				854F713E1854AF2800168F5E /* BoardView.cpp in Sources */,
@@ -406,7 +428,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
 				INFOPLIST_FILE = "BeadBreaker/BeadBreaker-Info.plist";
@@ -420,7 +445,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				INFOPLIST_FILE = "BeadBreaker/BeadBreaker-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";

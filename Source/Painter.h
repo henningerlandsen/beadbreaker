@@ -13,31 +13,24 @@
 
 #include <string>
 
-class SDL_Window;
-class SDL_Texture;
 class SDL_Renderer;
+class Sprite;
 
 class Painter
 {
 public:
-    Painter( SDL_Renderer* renderer, SDL_Texture* sprite, int tileSize );
+    Painter( SDL_Renderer* renderer );
     
     ~Painter();
     
-    void drawBackground() const;
+    void drawSprite( Sprite* sprite, int x, int y, int column = 0, int row = 0 ) const;
     
-    void drawTile( int x, int y, int spriteIndexX, int spriteIndexY ) const;
-    
-    void drawTile( int x, int y, int spriteIndexX, int spriteIndexY, float scale ) const;
-
-    int  getTileSize() const;
+    void drawSprite( Sprite* sprite, int x, int y, float scale, int column = 0, int row = 0 ) const;
     
     void swap() const;
     
 private:
     SDL_Renderer*   m_pRenderer;
-    SDL_Texture*    m_pTileSprite;
-    int             m_tileSize;
 };
 
 #endif /* defined(__BeadBreaker__Painter__) */
