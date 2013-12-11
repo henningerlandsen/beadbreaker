@@ -49,6 +49,8 @@ public:
     
     void        setNumberSprite( Sprite* sprite );
     
+    void        setWarningSprite( Sprite* sprite );
+    
     Position    mapToPiece( int windowX, int windowY ) const;
     
     void        setPainter( Painter* painter );
@@ -58,7 +60,7 @@ public:
 private:
     struct PieceState
     {
-        PieceState()
+        PieceState() // hack to make pieces fall on start
         : dx(0), dy(-9.0f), scale(1.0f), frame(0), endFrame(0) {}
         
         float dx;
@@ -90,6 +92,8 @@ private:
     Sprite*     m_pBeadSprite;
     Sprite*     m_pBackground;
     Sprite*     m_pNumberSprite;
+    Sprite*     m_pWarningSprite;
+    bool        m_showWarning;
     Painter*    m_pPainter;
     int         m_boardX;
     int         m_boardY;

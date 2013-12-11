@@ -24,6 +24,7 @@ BoardView::BoardView( Painter* painter )
 : m_pBackground( nullptr )
 , m_pNumberSprite( nullptr )
 , m_pBeadSprite( nullptr )
+, m_pWarningSprite( nullptr )
 , m_pPainter( painter )
 {
     
@@ -188,9 +189,16 @@ BoardView::draw( const BoardModel* board, unsigned int time ) const
         }
     }
     
+    // Less than ten seconds?
+    if ( time <= 10000 )
+    {
+        // flash sprite every second
+        if ( (time / 1000) % 2 == 1 )
+            m_pPainter->drawSprite( m_pWarningSprite, 63, 520 );
+    }
     
     // Draw numbers
-    int x = 275;
+    int x = 333;
     int y = 585;
     
     int digit = time / 10000;
@@ -239,6 +247,14 @@ void
 BoardView::setNumberSprite(Sprite *sprite)
 {
     m_pNumberSprite = sprite;
+}
+
+
+
+void
+BoardView::setWarningSprite(Sprite *sprite)
+{
+    m_pWarningSprite = sprite;
 }
 
 

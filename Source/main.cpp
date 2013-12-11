@@ -67,8 +67,11 @@ main(int argc, char * arg[])
     Sprite* background = Sprite::Create("Background.png", ren );
     ASSERT_SDL( background );
     
-    Sprite* numbers    = Sprite::Create("NumberSprite.png", ren, 11, 1 );
+    Sprite* numbers    = Sprite::Create("NumberSprite.png", ren, 10, 1 );
     ASSERT_SDL( numbers );
+    
+    Sprite* warningLight = Sprite::Create("WarningLight.png", ren );
+    ASSERT_SDL( warningLight );
  
     // Setup drawing
     Painter p( ren  );
@@ -76,6 +79,7 @@ main(int argc, char * arg[])
     view.setBackgroundSrite( background );
     view.setBeadSprite( beadSprite );
     view.setNumberSprite( numbers );
+    view.setWarningSprite( warningLight );
     view.setBoardPosition( 127, 10 );
     
     // Run game

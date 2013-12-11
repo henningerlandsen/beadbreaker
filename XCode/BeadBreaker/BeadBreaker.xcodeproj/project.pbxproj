@@ -26,6 +26,10 @@
 		855E3EE81857AFE4002659FE /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 855E3EE61857AFE4002659FE /* Background.png */; };
 		855E3EE91857AFE4002659FE /* BeadSprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 855E3EE71857AFE4002659FE /* BeadSprite.png */; };
 		855E3EEB1857C028002659FE /* NumberSprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 855E3EEA1857C028002659FE /* NumberSprite.png */; };
+		855E3EED1858F02E002659FE /* WarningLight.png in Resources */ = {isa = PBXBuildFile; fileRef = 855E3EEC1858F02E002659FE /* WarningLight.png */; };
+		855E3EEF1858FFBB002659FE /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 855E3EEE1858FFBB002659FE /* Icon.png */; };
+		855E3EF11858FFCF002659FE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 855E3EF01858FFCF002659FE /* Images.xcassets */; };
+		855E3EF2185900D3002659FE /* SDL2_image.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 855E3EDF185787DE002659FE /* SDL2_image.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +39,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				855E3EF2185900D3002659FE /* SDL2_image.framework in CopyFiles */,
 				85185ED1184FB73E00FDD2BB /* SDL2.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,6 +75,9 @@
 		855E3EE61857AFE4002659FE /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
 		855E3EE71857AFE4002659FE /* BeadSprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BeadSprite.png; sourceTree = "<group>"; };
 		855E3EEA1857C028002659FE /* NumberSprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NumberSprite.png; sourceTree = "<group>"; };
+		855E3EEC1858F02E002659FE /* WarningLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WarningLight.png; sourceTree = "<group>"; };
+		855E3EEE1858FFBB002659FE /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		855E3EF01858FFCF002659FE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +103,7 @@
 		85185E8D184FB2C100FDD2BB = {
 			isa = PBXGroup;
 			children = (
+				855E3EEE1858FFBB002659FE /* Icon.png */,
 				854F713518537F6400168F5E /* Notes.md */,
 				85185ECF184FB48000FDD2BB /* Source */,
 				85185E9F184FB2C100FDD2BB /* BeadBreaker */,
@@ -125,6 +134,7 @@
 		85185E9F184FB2C100FDD2BB /* BeadBreaker */ = {
 			isa = PBXGroup;
 			children = (
+				855E3EF01858FFCF002659FE /* Images.xcassets */,
 				85185EA0184FB2C100FDD2BB /* Supporting Files */,
 			);
 			path = BeadBreaker;
@@ -183,6 +193,7 @@
 		854F712D18534F8A00168F5E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				855E3EEC1858F02E002659FE /* WarningLight.png */,
 				855E3EEA1857C028002659FE /* NumberSprite.png */,
 				855E3EE61857AFE4002659FE /* Background.png */,
 				855E3EE71857AFE4002659FE /* BeadSprite.png */,
@@ -268,10 +279,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				855E3EF11858FFCF002659FE /* Images.xcassets in Resources */,
 				85185EA4184FB2C100FDD2BB /* InfoPlist.strings in Resources */,
 				855E3EEB1857C028002659FE /* NumberSprite.png in Resources */,
 				855E3EE91857AFE4002659FE /* BeadSprite.png in Resources */,
 				855E3EE81857AFE4002659FE /* Background.png in Resources */,
+				855E3EEF1858FFBB002659FE /* Icon.png in Resources */,
+				855E3EED1858F02E002659FE /* WarningLight.png in Resources */,
 				85185EAA184FB2C100FDD2BB /* Credits.rtf in Resources */,
 				854F71321853543E00168F5E /* BeadSprite.bmp in Resources */,
 			);
@@ -379,7 +393,7 @@
 					../../../Source,
 				);
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -418,7 +432,7 @@
 					../../../Source,
 				);
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
 			name = Release;

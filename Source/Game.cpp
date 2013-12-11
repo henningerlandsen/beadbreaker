@@ -66,11 +66,13 @@ Game::run()
     while ( state != Quit )
     {
 ;
-        
         if ( currentTime >= maxTime )
         {
             currentTime = maxTime;
-            state = GameOver;
+            // Wait for board to stabilize
+            if ( state == WaitForMove )
+                // End game
+                state = GameOver;
         }
         else
         {
@@ -143,11 +145,12 @@ Game::run()
                                 swapDX = 0;
                             }
 
-                            Position other = currentTile.shifted( swapDX, swapDY );
+                            Position other = currentTile.shifted(swapDX, swapDY);
 
                             // Is move possible?
                             if ( board.move( currentTile, other ) )
                             {
+                                // Trigger swap
                                 state = SwapTest;
                                 animFrame = 0;
                                 
@@ -194,31 +197,37 @@ Game::run()
                 }
                 else
                 {
-                    animFrame = -1;                  // Reset animation counter
+                    // Reset animation counter ( will be incremented below )
+                    animFrame = -1;
                     
                     if (state == SwapTest)
+                        // Mathces found ?
                         if ( board.findMathces() )
-                            state = DestroyMatches; // Mathces found
+                            state = DestroyMatches;
                         else
                         {
-                            board.move(currentTile,
-                                       currentTile.shifted( swapDX, swapDY ) );
-                            state = SwapFail;       // Move back
+                            board.move(currentTile, currentTile.shifted( swapDX, swapDY ) );
+                            // Redo swap
+                            state = SwapFail;
                         }
                     else
-                        state = WaitForMove;        // Finished moving back
+                        // Finished resetting, wait for user
+                        state = WaitForMove;
                 }
                 break;
             }
             case CheckBoard:
             {
-                if ( board.findMathces() )          // Any new mathces?
+                // New pieces caused new mathces?
+                if ( board.findMathces() )
                 {
+                    // Destroy them as well
                     animFrame = 0;
-                    state = DestroyMatches;         // Destroy them as well
+                    state = DestroyMatches;
                 }
                 else
-                    state = WaitForMove;            // Wait for next move
+                    // Wait for next move
+                    state = WaitForMove;
                 break;
             }
             case DestroyMatches:
@@ -237,9 +246,10 @@ Game::run()
                     // Get list of mathces
                     const IndexSet& matches = board.getMatches();
                     
-                    // Reset destroy state
+                    // Reset destroy state by setting frame 0
                     m_pView->animateDestroying( matches, 0 );
-                    // Move all pieces up to where they fall from
+                    
+                    // Notify view of falling pieces
                     m_pView->prepareFall( matches );
                     
                     // Clear matches
