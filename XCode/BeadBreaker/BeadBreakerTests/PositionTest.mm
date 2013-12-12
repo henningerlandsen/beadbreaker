@@ -10,11 +10,11 @@
 
 #include "Board.h"
 
-@interface PositionTest : XCTestCase
+@interface IndexTest : XCTestCase
 
 @end
 
-@implementation PositionTest
+@implementation IndexTest
 
 - (void)setUp
 {
