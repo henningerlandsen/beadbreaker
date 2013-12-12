@@ -26,6 +26,7 @@ public:
     Game( BoardView* m_pView );
     ~Game();
     
+    //! Starts the game loop. Returns ExitCode.
     int run();
     
 private:

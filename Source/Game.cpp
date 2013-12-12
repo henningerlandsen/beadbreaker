@@ -44,7 +44,7 @@ Game::run()
     
     // Setup random board
     BoardModel board;
-    board.randomize( SDL_GetTicks() );
+    board.randomize();
     
     // Let the pieces fall from above
     GameState state = Falling;

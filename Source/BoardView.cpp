@@ -220,14 +220,6 @@ BoardView::draw( const BoardModel* board, unsigned int time ) const
 
 
 void
-BoardView::setTileSize(int tileSize)
-{
-    m_tileSize = tileSize;
-}
-
-
-
-void
 BoardView::setBackgroundSrite(Sprite *sprite)
 {
     m_pBackground = sprite;

@@ -173,13 +173,13 @@ BoardModel::flushMatches()
     {
         Index removed = *iter;
         
-        // Move above pieces down one step
+        // Swap removed with above piece until removed is at the top
         while ( removed.y > 0 )
         {
             swap( removed, removed.shifted( 0, -1 ) );
             removed.y -= 1;
         }
-        
+        // Replace with random value
         m_board[removed] = generateRandomValue();
     }
     
@@ -207,7 +207,7 @@ BoardModel::generateRandomValue() const
 
 
 void
-BoardModel::randomize( unsigned int seed )
+BoardModel::randomize()
 {
     // This could be done smarter to avoid the step below.
     for ( Unit x = 0; x < BOARD_SIZE; ++x ) {

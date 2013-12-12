@@ -22,8 +22,12 @@ public:
     
     ~Painter();
     
+    //! Draw a sprite at position [x, y] using column and row index of sprite
+    //! sheet.
     void drawSprite( Sprite* sprite, int x, int y, int column = 0, int row = 0 ) const;
     
+    //! Draw a sprite at position [x, y] with a given scale. Scale is applied from the
+    //! center of the tile.
     void drawSprite( Sprite* sprite, int x, int y, float scale, int column = 0, int row = 0 ) const;
     
     void swap() const;
