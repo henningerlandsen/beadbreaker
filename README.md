@@ -3,10 +3,11 @@ Bead Breaker
 
 Notes
 -----
-I hope you will have fun testing the game. I think I have covered most cases described in the specs. The core functionality of the game is unit-tested. Tests are provided in the XCode project. The view and animation part of the game is not tested due to the limited time-frame. Since it is built to very specific specs, flexibility has not been a big concern. That being said, I believe the code to be maintainable should be easy to generalize to a higher degree. E.g. flexible board sizes, additional piece types and so on. Personally, I would have added a score counter, multiple levels and fancy rewarding particle explosions as first improvements.
+I hope you will have fun testing the game. I think I have covered most cases described in the specs. The core functionality of the game is unit-tested. Tests are provided in the XCode project. The view and animation part of the game is not tested due to the limited time-frame. Since it is built to very specific specs, flexibility has not been a big concern. That being said, I believe the code to be maintainable should be easy to generalize to a higher degree. E.g. flexible board sizes, additional piece types and so on. Personally, I would have added some kind of theme, a score counter, multiple levels and fancy rewarding particle explosions as first improvements.
 
-The bundle consists of the following:
-- /Build:		Contains a build for Mac OS X 10.9 64bit zipped
+
+The bundle consists of the following folders:
+- /Build:		Contains a build for Mac OS X 10.9 64bit, zipped
 - /Resources:	Image sprites for the game
 - /Source:		The source code for the project
 - /XCode:		Folder containing an XCode project and unit tests
