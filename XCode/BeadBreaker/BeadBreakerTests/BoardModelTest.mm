@@ -49,7 +49,7 @@
 
 - (void)testInvalidMove
 {
-    Position p( 0, 2 );
+    Index p( 0, 2 );
     
     XCTAssertFalse( m_boardModel.move( p, p.shifted( 1, 1 ) ), @"Made diagonal move");
     
@@ -69,7 +69,7 @@
 - (void)testValidMove
 {
     
-    Position p( 1, 3 );
+    Index p( 1, 3 );
     // Move [1,3] up to form a row of 1's at [0,2], [1,2], [2,2]
     XCTAssertTrue( m_boardModel.move( p, p.shifted( 0, -1 ) ), @"Failed to make valid move");
     
@@ -86,7 +86,7 @@
     XCTAssertTrue( m_boardModel.getMatches().empty(), @"Mathces should be cleared now");
     
     // Check that span [0-2,1] is moved down to [0-2,2]
-    Position f1( 0, 2 ), f2( 1, 2 ), f3( 2, 2 );
+    Index f1( 0, 2 ), f2( 1, 2 ), f3( 2, 2 );
     XCTAssertTrue( m_boardModel.getPieceType( f1 ) == 3 );
     XCTAssertTrue( m_boardModel.getPieceType( f2 ) == 4 );
     XCTAssertTrue( m_boardModel.getPieceType( f3 ) == 0 );
@@ -95,7 +95,7 @@
 
 - (void)testAngularCombo
 {
-    Position p( 7, 4 );
+    Index p( 7, 4 );
     XCTAssertTrue( m_boardModel.move( p, p.shifted( 0, 1 ) ) );
     XCTAssertTrue( m_boardModel.findMathces() == 5, @"Angular Combo failed");
 }
@@ -103,7 +103,7 @@
 
 - (void)testFiveXCombo
 {
-    Position p( 6, 5 );
+    Index p( 6, 5 );
     XCTAssertTrue( m_boardModel.move( p, p.shifted( 1, 0 ) ) );
     XCTAssertTrue( m_boardModel.findMathces() == 5, @"FiveX Combo failed");
 }

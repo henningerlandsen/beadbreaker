@@ -18,7 +18,7 @@ class Game
 public:
     enum ExitCode
     {
-        NoError = 0,
+        Exit = 0,
         Error = 1
     };
     

@@ -40,7 +40,7 @@ BoardView::~BoardView()
 
 
 void
-BoardView::animateGrab( const Position &a, float progress )
+BoardView::animateGrab( const Index &a, float progress )
 {
     // Use sinus function to do a litte wobble
     float amp    = animGrabAmpl * (1.0f - progress);
@@ -51,7 +51,7 @@ BoardView::animateGrab( const Position &a, float progress )
 
 
 void
-BoardView::animateSwap(const Position &a, const Position &b, float progress)
+BoardView::animateSwap(const Index &a, const Index &b, float progress)
 {
     float dx = (a.x - b.x) * (1-progress);
     float dy = (a.y - b.y) * (1-progress);
@@ -65,13 +65,13 @@ BoardView::animateSwap(const Position &a, const Position &b, float progress)
 
 
 void
-BoardView::moveUpColumn( Position p, int rows )
+BoardView::moveUpColumn( Index p, int rows )
 {
     if ( !p.isValid() )
         return;
     
     for (Unit y = BOARD_SIZE-1; y >= 0; --y ) {
-        PieceState& cand = m_viewModel[Position(p.x, y )]
+        PieceState& cand = m_viewModel[Index(p.x, y )]
         ;
         if ( y + cand.dy <= p.y )
         {
@@ -86,7 +86,7 @@ BoardView::moveUpColumn( Position p, int rows )
 void
 BoardView::prepareFall(const IndexSet &pieces)
 {
-    Position prev(-1,-1);
+    Index prev(-1,-1);
     int count = 0;
     
     IndexSet::const_reverse_iterator
@@ -94,7 +94,7 @@ BoardView::prepareFall(const IndexSet &pieces)
     end  = pieces.crend();
     for ( ; iter != end; ++iter )   // For each match...
     {
-        Position p = *iter;
+        Index p = *iter;
         if ( p.x != prev.x || p.y - prev.y != 1 )
         {
             moveUpColumn( prev, count );
@@ -122,7 +122,7 @@ BoardView::animateFalling(int frame)
         
         for ( Unit x = 0; x < BOARD_SIZE; ++x )
         {
-            Position p( x, y );
+            Index p( x, y );
             // Is piece falling?
             if ( m_viewModel[p].dy < 0.0f )
             {
@@ -161,7 +161,7 @@ BoardView::animateDestroying(const IndexSet &set, float progress )
 
 
 void
-BoardView::resetState(const Position &pos)
+BoardView::resetState(const Index &pos)
 {
     m_viewModel[pos].dx = 0.0f;
     m_viewModel[pos].dy = 0.0f;
@@ -178,7 +178,7 @@ BoardView::draw( const BoardModel* board, unsigned int time ) const
     {
         for ( Unit y = 0; y < BOARD_SIZE; ++y )
         {
-            Position p( x, y );
+            Index p( x, y );
             PieceType type = board->getPieceType( p );
             PieceState state = m_viewModel[p];
             m_pPainter->drawSprite(m_pBeadSprite,
@@ -268,10 +268,10 @@ BoardView::setBoardPosition(int left, int top)
 
 
 
-Position
-BoardView::mapToPiece(int windowX, int windowY) const
+Index
+BoardView::mapToIndex(int windowX, int windowY) const
 {
-    return Position((windowX - m_boardX) / m_pBeadSprite->getTileWidth(),
+    return Index((windowX - m_boardX) / m_pBeadSprite->getTileWidth(),
                     (windowY - m_boardY) / m_pBeadSprite->getTileHeight());
 }
 

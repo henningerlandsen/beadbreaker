@@ -9,7 +9,7 @@
 #ifndef __BeadBreaker__BoardModel__
 #define __BeadBreaker__BoardModel__
 
-#include "coretypes.h"
+#include "Board.h"
 #include <set>
 
 
@@ -23,9 +23,9 @@ public:
     
     const Board&    getBoard() const;
     
-    bool            canMove( const Position &posA, const Position &posB );
+    bool            canMove( const Index &posA, const Index &posB );
     
-    bool            move( const Position& posA, const Position& posB );
+    bool            move( const Index& posA, const Index& posB );
     
     int             findMathces();
     
@@ -33,16 +33,16 @@ public:
     
     void            flushMatches();
     
-    PieceType       getPieceType( const Position& pos ) const;
+    PieceType       getPieceType( const Index& pos ) const;
     
-    bool            isValidPosition( const Position& pos ) const;
+    bool            isValidPosition( const Index& pos ) const;
     
-    void            randomize();
+    void            randomize( unsigned int seed = 1 );
     
 private:
-    void            swap( const Position& a, const Position& b );
+    void            swap( const Index& a, const Index& b );
     
-    void            checkPiece( Position p, Unit dx, Unit dy, PieceType type, IndexSet &results ) const;
+    void            checkPiece( Index p, Unit dx, Unit dy, PieceType type, IndexSet &results ) const;
     
     void            removeMatches();
     

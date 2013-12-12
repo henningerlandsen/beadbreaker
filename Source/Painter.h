@@ -9,7 +9,6 @@
 #ifndef __BeadBreaker__Painter__
 #define __BeadBreaker__Painter__
 
-#include "coretypes.h"
 
 #include <string>
 

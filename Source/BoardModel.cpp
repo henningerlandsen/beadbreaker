@@ -47,7 +47,7 @@ BoardModel::getMatches() const
 
 
 PieceType
-BoardModel::getPieceType( const Position& pos ) const
+BoardModel::getPieceType( const Index& pos ) const
 {
     return m_board[pos];
 }
@@ -55,7 +55,7 @@ BoardModel::getPieceType( const Position& pos ) const
 
 
 bool
-BoardModel::canMove( const Position &posA, const Position &posB )
+BoardModel::canMove( const Index &posA, const Index &posB )
 {
     if ( !isValidPosition( posA) || !isValidPosition( posB ) )
         return false;
@@ -69,7 +69,7 @@ BoardModel::canMove( const Position &posA, const Position &posB )
 
 
 bool
-BoardModel::move( const Position &posA, const Position& posB )
+BoardModel::move( const Index &posA, const Index& posB )
 {
     if ( canMove( posA, posB ) )
     {
@@ -83,7 +83,7 @@ BoardModel::move( const Position &posA, const Position& posB )
 
 
 bool
-BoardModel::isValidPosition( const Position &pos ) const
+BoardModel::isValidPosition( const Index &pos ) const
 {
     return pos.x >= 0 && pos.x < BOARD_SIZE && pos.y >= 0 && pos.y < BOARD_SIZE;
 }
@@ -91,7 +91,7 @@ BoardModel::isValidPosition( const Position &pos ) const
 
 
 void
-BoardModel::swap( const Position &a, const Position &b )
+BoardModel::swap( const Index &a, const Index &b )
 {
     PieceType t = m_board[a];
     m_board[a]  = m_board[b];
@@ -109,8 +109,8 @@ BoardModel::findMathces()
     {
         for ( Unit y = 0; y < BOARD_SIZE; ++y )
         {
-            // Position to test
-            Position p( x, y );
+            // Index to test
+            Index p( x, y );
             
             // Check that this piece is not already matched
             if ( m_matches.find( p ) == m_matches.end() )
@@ -171,7 +171,7 @@ BoardModel::flushMatches()
     
     for (; iter != end; ++iter )
     {
-        Position removed = *iter;
+        Index removed = *iter;
         
         // Move above pieces down one step
         while ( removed.y > 0 )
@@ -189,7 +189,7 @@ BoardModel::flushMatches()
 
 
 void
-BoardModel::checkPiece( Position p, Unit dx, Unit dy, PieceType type, IndexSet &results ) const
+BoardModel::checkPiece( Index p, Unit dx, Unit dy, PieceType type, IndexSet &results ) const
 {
     while ( isValidPosition( p.shift( dx, dy ) ) && getPieceType( p ) == type )
     {
@@ -207,12 +207,12 @@ BoardModel::generateRandomValue() const
 
 
 void
-BoardModel::randomize()
+BoardModel::randomize( unsigned int seed )
 {
     // This could be done smarter to avoid the step below.
     for ( Unit x = 0; x < BOARD_SIZE; ++x ) {
         for ( Unit y = 0; y < BOARD_SIZE; ++y ) {
-            m_board[Position(x,y)] = generateRandomValue();
+            m_board[Index(x,y)] = generateRandomValue();
         }
     }
     

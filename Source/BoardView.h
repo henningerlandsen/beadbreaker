@@ -9,7 +9,7 @@
 #ifndef __BeadBreaker__BoardView__
 #define __BeadBreaker__BoardView__
 
-#include "coretypes.h"
+#include "Board.h"
 
 class Painter;
 class BoardModel;
@@ -26,10 +26,10 @@ public:
     BoardView( Painter* painter );
     ~BoardView();
     
-    void        animateGrab( const Position &a, float progress );
+    void        animateGrab( const Index &a, float progress );
     
-    void        animateSwap( const Position &a, const Position &b, float progress );
-    void        moveUpColumn( Position from, int rows );
+    void        animateSwap( const Index &a, const Index &b, float progress );
+    void        moveUpColumn( Index from, int rows );
     
     void        prepareFall( const IndexSet &pieces );
     
@@ -37,7 +37,7 @@ public:
     
     void        animateDestroying( const IndexSet& set, float progress );
     
-    void        resetState( const Position &pos );
+    void        resetState( const Index &pos );
     
     void        draw( const BoardModel* board, unsigned int time ) const;
     
@@ -51,7 +51,7 @@ public:
     
     void        setWarningSprite( Sprite* sprite );
     
-    Position    mapToPiece( int windowX, int windowY ) const;
+    Index       mapToIndex( int windowX, int windowY ) const;
     
     void        setPainter( Painter* painter );
     
@@ -73,12 +73,12 @@ private:
     struct ViewModel
     {
 
-        PieceState& operator []( const Position &p )
+        PieceState& operator []( const Index &p )
         {
             return pieces[p.x][p.y];
         }
         
-        const PieceState& operator []( const Position &p ) const
+        const PieceState& operator []( const Index &p ) const
         {
             return pieces[p.x][p.y];
         }

@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 
-#include "coretypes.h"
+#include "Board.h"
 
 @interface PositionTest : XCTestCase
 
@@ -30,20 +30,20 @@
 
 - (void)testOperators
 {
-    XCTAssertTrue( Position(1,5) < Position(2,3), @"Test column priority");
-    XCTAssertFalse( Position(1,5) > Position(2,3), @"Test column priority");
+    XCTAssertTrue( Index(1,5) < Index(2,3), @"Test column priority");
+    XCTAssertFalse( Index(1,5) > Index(2,3), @"Test column priority");
 }
 
 - (void)testValidity
 {
 
-    XCTAssertFalse( Position().isValid(), @"Position should be invalid by default" );
-    XCTAssertFalse( Position(0,8).isValid(), @"Position should be out of bounds");
-    XCTAssertFalse( Position(8,0).isValid(), @"Position should be out of bounds");
-    XCTAssertTrue( Position(0,0).isValid(), @"Should be valid position");
-    XCTAssertTrue( Position(0,7).isValid(), @"Should be valid position");
-    XCTAssertTrue( Position(7,0).isValid(), @"Should be valid position");
-    XCTAssertTrue( Position(5,5).isValid(), @"Should be valid position");
+    XCTAssertFalse( Index().isValid(), @"Index should be invalid by default" );
+    XCTAssertFalse( Index(0,8).isValid(), @"Index should be out of bounds");
+    XCTAssertFalse( Index(8,0).isValid(), @"Index should be out of bounds");
+    XCTAssertTrue( Index(0,0).isValid(), @"Should be valid position");
+    XCTAssertTrue( Index(0,7).isValid(), @"Should be valid position");
+    XCTAssertTrue( Index(7,0).isValid(), @"Should be valid position");
+    XCTAssertTrue( Index(5,5).isValid(), @"Should be valid position");
     
 }
 

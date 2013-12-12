@@ -58,7 +58,7 @@
 		85185ECD184FB43900FDD2BB /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		85185ED2184FB95D00FDD2BB /* BoardModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BoardModel.cpp; sourceTree = "<group>"; };
 		85185ED3184FB95D00FDD2BB /* BoardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardModel.h; sourceTree = "<group>"; };
-		85185ED5184FB9EE00FDD2BB /* coretypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = coretypes.h; sourceTree = "<group>"; };
+		85185ED5184FB9EE00FDD2BB /* Board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 		854F71281852724200168F5E /* PositionTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PositionTest.mm; sourceTree = "<group>"; };
 		854F71311853543E00168F5E /* BeadSprite.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = BeadSprite.bmp; sourceTree = "<group>"; };
 		854F71331853760300168F5E /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 				854F71331853760300168F5E /* main.cpp */,
 				85185ED2184FB95D00FDD2BB /* BoardModel.cpp */,
 				85185ED3184FB95D00FDD2BB /* BoardModel.h */,
-				85185ED5184FB9EE00FDD2BB /* coretypes.h */,
+				85185ED5184FB9EE00FDD2BB /* Board.h */,
 				854F713618548FEC00168F5E /* Game.cpp */,
 				854F713718548FEC00168F5E /* Game.h */,
 				854F71391854904A00168F5E /* Painter.cpp */,

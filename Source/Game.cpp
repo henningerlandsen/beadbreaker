@@ -44,13 +44,13 @@ Game::run()
     
     // Setup random board
     BoardModel board;
-    board.randomize();
+    board.randomize( SDL_GetTicks() );
     
     // Let the pieces fall from above
     GameState state = Falling;
     
     SDL_Point grabPosition;
-    Position  currentTile(-1, -1);
+    Index  currentTile(-1, -1);
     
     // Setup one minute timeout
     uint currentTime = SDL_GetTicks();
@@ -66,6 +66,7 @@ Game::run()
     while ( state != Quit )
     {
 ;
+        // Has time run out?
         if ( currentTime >= maxTime )
         {
             currentTime = maxTime;
@@ -91,7 +92,7 @@ Game::run()
                         grabPosition.y = e.button.y;
                         
                         // Note: Assumes integer division
-                        currentTile = m_pView->mapToPiece( grabPosition.x, grabPosition.y );
+                        currentTile = m_pView->mapToIndex( grabPosition.x, grabPosition.y );
                         
                         if ( board.isValidPosition( currentTile ) )
                         {
@@ -102,7 +103,7 @@ Game::run()
                         else
                         {
                             // Set to invalid position
-                            currentTile = Position(-1,-1);
+                            currentTile = Index(-1,-1);
                         }
                     }
                     break;
@@ -114,7 +115,7 @@ Game::run()
                         // Reset item state
                         m_pView->resetState( currentTile );
                         
-                        currentTile = Position( -1, -1 );
+                        currentTile = Index( -1, -1 );
                     }
                     break;
                     
@@ -145,7 +146,7 @@ Game::run()
                                 swapDX = 0;
                             }
 
-                            Position other = currentTile.shifted(swapDX, swapDY);
+                            Index other = currentTile.shifted(swapDX, swapDY);
 
                             // Is move possible?
                             if ( board.move( currentTile, other ) )
@@ -269,7 +270,8 @@ Game::run()
             case Quit:
                 continue;
                 break;
-                
+            
+            case GameOver:
             case WaitForMove:
             default:
                 break;
@@ -277,9 +279,12 @@ Game::run()
         
         // Draw the model
         m_pView->draw( &board, maxTime - currentTime );
+
+        // Sleep thread. Let other apps play with the CPU as well.
+        SDL_Delay( 1 );
         
         ++animFrame;
     }
     
-    return NoError;
+    return Exit;
 }
